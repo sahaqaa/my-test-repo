@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+    nginx:
+        image: "nginx:1.18.0"
+        container_name: nginx
+        restart: unless-stopped
+        ports:
+            - "80:80"
+            - "443:443"
+        networks:
+         - backend
+         - frontend
+        volumes:
+            - ./www:/var/www
+        depends_on:
+          - php
+          - redis
+
+    php:
+        image: "php:8.0.3-fpm"
+        container_name: php
+        restart: unless-stopped
+        networks:
+         - backend
+
+    redis:
+        image: "redis:6.2.1-alpine"
+        container_name: redis
+        restart: unless-stopped
+        networks:
+         - backend
+        volumes:
+         - ./redis:/data
+
+networks:
+  - frontend:
+      name: frontend
+  - backend:
+      name: backend
