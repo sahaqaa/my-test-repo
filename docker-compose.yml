@@ -16,7 +16,7 @@ services:
         - redis
 
     php:
-      image: "php:8.0.3-fpm"
+      build: ./php
       container_name: php
       restart: unless-stopped
       networks:
@@ -36,3 +36,4 @@ networks:
     name: frontend
   backend:
     name: backend
+
