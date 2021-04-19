@@ -1,2 +1,5 @@
 FROM nginx:1.18.0
-COPY ./html/index.php /usr/share/nginx/html/index.php
+
+RUN rm /etc/nginx/conf.d/default.conf
+COPY ./html/index.php /var/www/html/index.php
+COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
