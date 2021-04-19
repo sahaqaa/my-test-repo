@@ -3,3 +3,7 @@ redis/*
 # Ignore redis binary dump (dump.rdb) files
 
 *.rdb
+
+# Ignore ENV file
+.env
+.env.*
