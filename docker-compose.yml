@@ -2,7 +2,7 @@ version: '3'
 
 services:
     nginx:
-      build: ./nginx
+      image: nginx:1.18.0
       container_name: nginx
       restart: unless-stopped
       ports:
@@ -11,16 +11,20 @@ services:
       networks:
         - backend
         - frontend
+      volumes:
+      - ./nginx/html:/var/www/html/
+      - ./nginx/conf:/etc/nginx/conf.d/
       depends_on:
         - php
-        - redis
 
     php:
-      build: ./php
+      image: php:8.0.3-fpm
       container_name: php
       restart: unless-stopped
       networks:
         - backend
+      volumes:
+      - ./nginx/html:/var/www/html/
 
     redis:
       image: "redis:6.2.1-alpine"
@@ -36,4 +40,3 @@ networks:
     name: frontend
   backend:
     name: backend
-
