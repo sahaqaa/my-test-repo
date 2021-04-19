@@ -34,7 +34,7 @@ services:
         - ./redis:/data
 
 networks:
-  - frontend:
-      name: frontend
-  - backend:
-      name: backend
+  frontend:
+    name: frontend
+  backend:
+    name: backend
