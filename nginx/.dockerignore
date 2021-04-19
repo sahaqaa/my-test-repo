@@ -1,1 +1,6 @@
+# Ignore Dockerfile
 Dockerfile
+
+# Ignore .git and .cache folders
+.git
+.cache
